@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Lost &amp; Found{% endblock %}</title>
+  <style>
+    :root { --ink:#1b2733; --muted:#5e6b78; --bg:#f1f4f7; --card:#ffffff; --line:#d5dce3; --lost:#c9402b; --found:#0b7a6a; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background:var(--bg); color:var(--ink); line-height:1.5; }
+    header { background:var(--ink); }
+    .bar { max-width:720px; margin:0 auto; padding:14px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+    .bar a { color:#fff; text-decoration:none; font-weight:700; }
+    main { max-width:720px; margin:0 auto; padding:24px 16px 48px; }
+    h1 { margin:0 0 16px; font-size:2rem; }
+    .filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
+    .filters a { padding:8px 16px; border:1px solid var(--line); border-radius:999px; background:var(--card); color:var(--ink); text-decoration:none; font-weight:500; }
+    .filters a.active { background:var(--ink); color:#fff; border-color:var(--ink); }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px; margin-bottom:14px; }
+    .card h2 { margin:8px 0 4px; font-size:1.25rem; overflow-wrap:anywhere; }
+    .meta { color:var(--muted); font-size:.9rem; margin:0 0 8px; }
+    .badge { display:inline-block; padding:2px 10px; border-radius:4px; color:#fff; font-size:.8rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; }
+    .badge.lost { background:var(--lost); }
+    .badge.found { background:var(--found); }
+    .contact { background:var(--bg); padding:8px 10px; border-radius:8px; margin:8px 0 0; overflow-wrap:anywhere; }
+    .empty { text-align:center; color:var(--muted); padding:32px 16px; border:2px dashed var(--line); border-radius:10px; }
+    .form p { margin:0 0 14px; display:grid; gap:6px; }
+    .form label { font-weight:600; font-size:.9rem; }
+    .form input, .form select, .form textarea { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:8px; font:inherit; background:#fff; color:var(--ink); }
+    .btn { display:inline-block; padding:10px 18px; border-radius:8px; border:0; background:var(--ink); color:#fff; font:inherit; font-weight:600; cursor:pointer; text-decoration:none; }
+    .btn.ghost { background:transparent; color:var(--ink); border:1px solid var(--line); }
+    .bar .btn { background:var(--lost); padding:8px 14px; }
+    .errorlist { color:var(--lost); list-style:none; padding:0; margin:0; font-size:.9rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <a href="{% url 'item_list' %}">Lost &amp; Found</a>
+      <a class="btn" href="{% url 'item_create' %}">+ Post an item</a>
+    </div>
+  </header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

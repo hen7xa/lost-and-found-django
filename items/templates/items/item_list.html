@@ -1,0 +1,23 @@
+{% extends "items/base.html" %}
+
+{% block content %}
+  <h1>Lost &amp; Found</h1>
+
+  <div class="filters">
+    <a href="{% url 'item_list' %}" class="{% if not current %}active{% endif %}">All</a>
+    <a href="?status=lost" class="{% if current == 'lost' %}active{% endif %}">Lost</a>
+    <a href="?status=found" class="{% if current == 'found' %}active{% endif %}">Found</a>
+  </div>
+
+  {% for item in items %}
+    <article class="card">
+      <span class="badge {{ item.status }}">{{ item.get_status_display }}</span>
+      <h2>{{ item.title }}</h2>
+      <p class="meta">{{ item.location }} &middot; {{ item.date|date:"j M Y" }}</p>
+      {% if item.description %}<p>{{ item.description }}</p>{% endif %}
+      <p class="contact"><strong>Contact:</strong> {{ item.contact_info }}</p>
+    </article>
+  {% empty %}
+    <p class="empty">No items here yet.</p>
+  {% endfor %}
+{% endblock %}
